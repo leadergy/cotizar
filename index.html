@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OREL · Solicitud de cotización</title>
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="OREL">
+<meta name="theme-color" content="#07113a">
+<meta name="description" content="Energía limpia, reducción de costos y autonomía. Complete sus datos y adjunte sus facturas.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OREL Energy">
+<meta property="og:title" content="OREL · Solicitud de cotización">
+<meta property="og:description" content="Energía limpia, reducción de costos y autonomía. Complete sus datos y adjunte sus facturas.">
+<meta property="og:url" content="https://cotizar.leadergy.com/">
+<meta property="og:image" content="https://cotizar.leadergy.com/vista-link.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{--navy:#07113a;--navy2:#0d1b57;--text:#eef1fa;--muted:#9ba6c6;--yellow:#fedd01}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px 16px;
+       background:linear-gradient(180deg,var(--navy2),var(--navy));color:var(--text);
+       font:16px/1.5 Roboto,Arial,sans-serif;text-align:center}
+  a.app{display:inline-block;text-decoration:none;color:var(--text)}
+  a.app img{width:148px;height:148px;border-radius:33px;box-shadow:0 12px 30px rgba(0,0,0,.45);display:block;margin:0 auto 14px}
+  a.app span{font-weight:500;font-size:18px}
+  p{color:var(--muted);max-width:340px;margin:18px auto 0;font-size:14px}
+  .ins{display:none;max-width:360px;margin:24px auto 0;padding:14px 16px;border:1px solid rgba(255,255,255,.15);border-radius:12px;text-align:left;font-size:14px;color:var(--text)}
+  .ins b{color:var(--yellow)}
+</style>
+</head>
+<body>
+<main>
+  <a class="app" id="go" href="#"><img src="icono-512.png" alt="OREL Energy"><span>Solicitar cotización</span></a>
+  <p id="msg">Abriendo el formulario…</p>
+  <div class="ins" id="ins">
+    <b>Agregar el ícono a la pantalla de inicio</b><br>
+    <b>iPhone:</b> en Safari tocá <b>Compartir</b> (□↑) › <b>Agregar a inicio</b>.<br>
+    <b>Android:</b> en Chrome tocá <b>⋮</b> › <b>Agregar a la pantalla principal</b>.
+  </div>
+</main>
+<script>
+(function(){
+  var FORM="https://script.google.com/macros/s/AKfycbxKXZWOd9NlmyN3SEok8b-GrUBdFIW3poGKe0-xDTF-SvVFG0cILGMr--CGyir95a-H8Q/exec";
+  var q=new URLSearchParams(location.search), ref=q.get("ref");
+  var dest=FORM+(ref?"?ref="+encodeURIComponent(ref):"");
+  document.getElementById("go").href=dest;
+  // abierto desde el ícono de la pantalla de inicio → directo al formulario
+  if(navigator.standalone||(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)){location.replace(dest);return;}
+  // ?instalar → muestra cómo agregar el ícono al celular y no redirige
+  if(q.has("instalar")){
+    document.getElementById("msg").textContent="Tocá el ícono para abrir el formulario.";
+    document.getElementById("ins").style.display="block";
+    return;
+  }
+  location.replace(dest);
+})();
+</script>
+</body>
+</html>
